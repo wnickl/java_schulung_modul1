@@ -17,7 +17,7 @@ import org.junit.runners.Suite.SuiteClasses;
  * @version $Revision$
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ProductCatalogTest.class, WorkflowTest.class})
+@Suite.SuiteClasses({ProductCatalogTest.class, WorkflowTest.class, CalculationTest.class, OrderTest.class})
 public class AllTests {
 
   private static final Logger logger = LogManager.getLogger(AllTests.class.getName());
