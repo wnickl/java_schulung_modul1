@@ -1,0 +1,4 @@
+1. currently only one shippment creator can be configured
+-> should be n creators and also be changeable at runtime
+
+2. mangement of deliveries once created could be implemented  
