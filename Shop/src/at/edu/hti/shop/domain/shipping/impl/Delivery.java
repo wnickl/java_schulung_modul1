@@ -10,7 +10,9 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import at.edu.hti.shop.domain.order.def.IOrderLine;
+import at.edu.hti.shop.domain.order.impl.OrderLine;
 import at.edu.hti.shop.domain.shipping.def.IDelivery;
+import at.edu.hti.shop.specification.ISpecification;
 
 /**
  * The Class Delivery as default implementation for {@link IDelivery}
@@ -30,8 +32,13 @@ public class Delivery implements IDelivery {
   /** The shipping mode. */
   private final ShippingMode shippingMode;
 
+  private final List<ISpecification<IOrderLine>> checks = new ArrayList<>();
+
   public Delivery(ShippingMode shippingMode) {
     this.shippingMode = shippingMode;
+    //TODO: could be configured externally?
+    checks.add(new CorrectShippingModeSpecification(shippingMode));
+    checks.add(new WeightLessThanSpecification(IDelivery.MAX_WEIGHTS.get(shippingMode)));
   }
 
   /** {@inheritDoc} */
@@ -44,13 +51,10 @@ public class Delivery implements IDelivery {
   /** {@inheritDoc} */
   @Override
   public boolean canDeliver(IOrderLine ol) {
-    ShippingMode olSM = ol.getProduct().getCategory().getShippingMode();
-    if (olSM != getShippingMode()) {
-      logger.info("can not add orderline " + ol + " because of different shipping mode [ol:" + olSM + ";this:" + getShippingMode() + "]");
-      return false;
-    } else if (ol.getWeight() + getWeight() > MAX_WEIGHTS.get(olSM).doubleValue()) {
-      logger.info("can not add orderline " + ol + " because max weight [" + MAX_WEIGHTS.get(olSM).doubleValue() + "] would be exceeded!");
-      return false;
+    for (ISpecification<IOrderLine> spec : checks) {
+      if (!spec.IsSatisfiedBy(ol)) {
+        return false;
+      }
     }
     return true;
   }
