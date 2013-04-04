@@ -39,6 +39,8 @@ After that the user confirms the order and the delivery objects are created.
 ----------------------------
 logging: log4j (see lib/logging)
 xml:     dom4j (see lib/xml)
+commons: commons-lang3-3.1.jar (see lib/commons)
+testing: junit-4.7.jar (see lib/testing)
 
 1.3.2 deployment:
 -----------------
@@ -48,7 +50,3 @@ Is done via ant build (target is to create shop-1.0.jar)
 --------------------
 requirements specification done in documentation/requirements
 javadoc api created in folder documentation/javadoc
-
-1.3.3.1 put in operation docu:
-------------------------------
-to start the application type 'java shop-1.0.jar' in console
