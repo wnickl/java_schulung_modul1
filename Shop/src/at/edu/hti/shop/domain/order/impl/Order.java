@@ -26,7 +26,7 @@ import at.edu.hti.shop.domain.shipping.impl.ShippmentFactory;
 public class Order implements IOrder, Serializable {
 
   /** The Constant serialVersionUID. */
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 2282154289244275873L;
 
   /** unique sequence of ids for orders */
   private static final AtomicLong orderIdSequence = new AtomicLong(0);
