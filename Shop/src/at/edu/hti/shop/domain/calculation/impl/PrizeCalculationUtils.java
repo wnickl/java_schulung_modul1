@@ -13,15 +13,18 @@ import at.edu.hti.shop.domain.shipping.def.IShippment;
  * @version $Revision$
  */
 
-public class PrizeCalculationUtils {
+final class PrizeCalculationUtils {
 
+  private PrizeCalculationUtils () {
+  }
+	
   /**
    * Sum product prizes.
    * 
    * @param order the {@link IOrder}
    * @return the summed prize of all requested product items
    */
-  protected static double sumProductPrizes(IShippment order) {
+  static final double sumProductPrizes(IShippment order) {
     double sum = 0;
     for (IDelivery d : order.getDeliveries()) {
       for (IOrderLine ol : d.getOrderLines()) {
