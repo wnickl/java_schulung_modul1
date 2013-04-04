@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<project default="usage" basedir=".">
+	<property file="build.properties" />
+	<property name="build.home" value="." />
+	<property name="build.dir" value="${build.home}/classes" />
+	<property name="impl.src.dir" value="${build.home}/../src" />
+	<property name="test.src.dir" value="${build.home}/../test" />
+	<property name="cfg.src.dir" value="${build.home}/../cfg" />
+	<property name="lib.dir" value="${build.home}/../lib" />
+	<property name="dist.dir" value="${build.home}/dist" />
+	<property name="unittest.reporting.dir" value="${build.home}/unittests" />
+	<property name="javadoc.dist.dir" value="${build.home}/../documentation/javadoc" />
+
+	<path id="test.classpath">
+		<fileset dir="${dist.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}/commons">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${lib.dir}/logging">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${lib.dir}/testing">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${lib.dir}/xml">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+
+	<target name="usage">
+		<echo message="" />
+		<echo message="Shop build file" />
+		<echo message="-----------------------"/>
+		<echo message="" />
+		<echo message="Available targets are:" />
+		<echo message="" />
+		<echo message="clean            --> Clean output dirs" />
+		<echo message="build            --> make jar file" />
+		<echo message="tests            --> Run tests " />
+		<echo message="" />
+
+		<echo message="build home       = ${build.home}" />
+		<echo message="build dir        = ${build.dir}" />
+		<echo message="impl-src         = ${impl.src.dir}" />
+		<echo message="test-src         = ${test.src.dir}" />
+		<echo message="cfg-src          = ${cfg.src.dir}" />
+		<echo message="lib-dir          = ${lib.dir}" />
+		<echo message="dist-dir         = ${dist.dir}" />
+		<echo message="unittest-reports = ${unittest.reporting.dir}" />
+		<echo message="javadoc-dir      = ${javadoc.dist.dir}" />
+	</target>
+
+	<target name="init">
+		<tstamp />
+	</target>
+
+	<target name="build" description="Compile Java Classes" depends="init">
+		<tstamp />
+		<echo message="create directory ${build.dir}" />
+		<mkdir dir="${build.dir}" />
+
+		<javac destdir="${build.dir}" source="1.7" target="1.7" debug="true" deprecation="false" optimize="false" failonerror="true">
+			<src path="${impl.src.dir}" />
+			<src path="${test.src.dir}" />
+			<classpath refid="build.classpath" />
+		</javac>
+		<copy todir="${build.dir}" preservelastmodified="true">
+			<fileset dir="${cfg.src.dir}">
+				<include name="**/**" />
+			</fileset>
+		</copy>
+		<echo message="create directory ${dist.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<jar destfile="${dist.dir}/shop-1.0.jar">
+			<fileset dir="${build.dir}" />
+		</jar>
+	</target>
+
+	<target name="clean" description="Cleans out all compiled content, doc etc.">
+		<echo message="going to delete ${build.dir}" />
+		<echo message="going to delete ${dist.dir}" />
+		<delete includeemptydirs="yes" failonerror="no" verbose="true">
+			<fileset dir="${build.dir}" />
+			<fileset dir="${dist.dir}" />
+		</delete>
+	</target>
+
+	<target name="runTests" description="Run the tests" depends="build">
+		<mkdir dir="${unittest.reporting.dir}" />
+		<junit printsummary="true" fork="true">
+			<formatter usefile="true" type="xml" />
+			<classpath refid="build.classpath" />
+			<classpath refid="test.classpath" />
+			<test name="at.edu.hti.shop.AllTests" todir="${unittest.reporting.dir}" />
+		</junit>
+		<junitreport todir="${unittest.reporting.dir}">
+			<fileset dir="${unittest.reporting.dir}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${unittest.reporting.dir}" />
+		</junitreport>
+	</target>
+
+	<target name="genJavadoc" description="Create Javadocs" depends="init">
+
+		<mkdir dir="${javadoc.dist.dir}" />
+		<tstamp>
+			<format property="datum" pattern="yyyyMMddHHmm" locale="en,UK" />
+		</tstamp>
+		<record name="${javadoc.dist.dir}/javadoc-${datum}.log" action="start" />
+		<javadoc destdir="${javadoc.dist.dir}/api" private="yes" author="true" version="true" use="true" maxmemory="512M" classpathref="build.classpath"
+			encoding="ISO-8859-15" charset="ISO-8859-15">
+			<packageset dir="${impl.src.dir}" defaultexcludes="yes">
+				<include name="**" />
+			</packageset>
+		</javadoc>
+		<record name="${javadoc.dist.dir}/javadoc-${datum}.log" action="stop" />
+	</target>
+
+</project>

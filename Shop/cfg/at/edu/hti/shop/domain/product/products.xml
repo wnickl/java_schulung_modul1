@@ -1,0 +1,28 @@
+<catalog>
+	<categories>
+		<category name="food" isShippable="true" shippingMode="land" />
+		<category name="tools" isShippable="true" shippingMode="land" />
+		<category name="vehicles" isShippable="true" shippingMode="ship" />
+	</categories>
+	<products>
+		<product id="1" category="food" name="aepfel" prize="24" weight="22" vendor="SPAR" supplyPeriodInDays="1" />
+		<product id="2" category="food" name="birnen" prize="47" weight="27" vendor="SPAR" supplyPeriodInDays="1" />
+		<product id="3" category="food" name="klopapier" prize="11" weight="42" vendor="SPAR" supplyPeriodInDays="1" />
+		<product id="4" category="food" name="kiwi" prize="45" weight="282" vendor="SPAR" supplyPeriodInDays="1" />
+		<product id="5" category="food" name="karotten" prize="42" weight="82" vendor="SPAR" supplyPeriodInDays="1" />
+		<product id="6" category="food" name="kaese" prize="46" weight="10" vendor="SPAR" supplyPeriodInDays="1" />
+		<product id="7" category="food" name="wurst" prize="41" weight="10" vendor="SPAR" supplyPeriodInDays="1" />
+		<product id="8" category="food" name="orangen-saft" prize="24" weight="1000" vendor="SPAR" supplyPeriodInDays="1" />
+		<product id="9" category="food" name="pfirsich" prize="31" weight="200" vendor="SPAR" supplyPeriodInDays="1" />
+		<product id="10" category="food" name="schokolade" prize="66" weight="200" vendor="SPAR" supplyPeriodInDays="1" />
+
+
+		<product id="11" category="tools" name="hammer" prize="266" weight="400" vendor="BAUMARKT" supplyPeriodInDays="2" />
+		<product id="12" category="tools" name="schrauben" prize="166" weight="200" vendor="BAUMARKT" supplyPeriodInDays="2" />
+		<product id="13" category="tools" name="naegel" prize="166" weight="200" vendor="BAUMARKT" supplyPeriodInDays="1" />
+		<product id="14" category="tools" name="leiter" prize="566" weight="3000" vendor="BAUMARKT" supplyPeriodInDays="3" />
+		<product id="15" category="tools" name="wagen-heber" prize="866" weight="2000" vendor="BAUMARKT" supplyPeriodInDays="5" />
+
+		<product id="16" category="vehicles" name="mercedes-GLK" prize="122866" weight="200000" vendor="MERCEDES-BENZ" supplyPeriodInDays="5" />
+	</products>
+</catalog>

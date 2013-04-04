@@ -1,0 +1,9 @@
+at.edu.hti.shop.domain.calculation.def
+at.edu.hti.shop.domain.calculation.impl
+at.edu.hti.shop.domain.order.def
+at.edu.hti.shop.domain.order.impl
+at.edu.hti.shop.domain.product
+at.edu.hti.shop.domain.product.def
+at.edu.hti.shop.domain.product.impl
+at.edu.hti.shop.domain.shipping.def
+at.edu.hti.shop.domain.shipping.impl
