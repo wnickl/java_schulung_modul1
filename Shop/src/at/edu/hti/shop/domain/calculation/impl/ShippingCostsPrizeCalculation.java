@@ -19,14 +19,20 @@ public class ShippingCostsPrizeCalculation implements IPrizeCalculation {
 
   /** {@inheritDoc} */
   @Override
-  public double calcPrize(IShippment order) {
-    return PrizeCalculationUtils.sumProductPrizes(order) + SHIPPING_COSTS;
+  public double calcPrize(IShippment shippment) {
+    if (shippment == null) {
+      throw new NullPointerException("'shippment' must not be null");
+    }
+    return PrizeCalculationUtils.sumProductPrizes(shippment) + SHIPPING_COSTS;
   }
 
   /** {@inheritDoc} */
   @Override
-  public boolean shouldCalculate(IShippment order) {
-    double sum = PrizeCalculationUtils.sumProductPrizes(order);
+  public boolean shouldCalculate(IShippment shippment) {
+    if (shippment == null) {
+      throw new NullPointerException("'shippment' must not be null");
+    }
+    double sum = PrizeCalculationUtils.sumProductPrizes(shippment);
 
     if (sum < SHIPPING_COSTS) {
       return true;
