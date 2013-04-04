@@ -1,6 +1,7 @@
 
 package at.edu.hti.shop.domain.calculation.impl;
 
+import at.edu.hti.shop.domain.calculation.def.IPrizeCalculation;
 import at.edu.hti.shop.domain.shipping.def.IShippment;
 
 /**
@@ -11,7 +12,7 @@ import at.edu.hti.shop.domain.shipping.def.IShippment;
  * @version $Revision$
  */
 
-public class ShippingCostsPrizeCalculation extends AbstractPrizeCalculation {
+public class ShippingCostsPrizeCalculation implements IPrizeCalculation {
 
   /** The Constant SHIPPING_COSTS. */
   private static final int SHIPPING_COSTS = 10;
@@ -19,13 +20,13 @@ public class ShippingCostsPrizeCalculation extends AbstractPrizeCalculation {
   /** {@inheritDoc} */
   @Override
   public double calcPrize(IShippment order) {
-    return sumProductPrizes(order) + SHIPPING_COSTS;
+    return PrizeCalculationUtils.sumProductPrizes(order) + SHIPPING_COSTS;
   }
 
   /** {@inheritDoc} */
   @Override
   public boolean shouldCalculate(IShippment order) {
-    double sum = sumProductPrizes(order);
+    double sum = PrizeCalculationUtils.sumProductPrizes(order);
 
     if (sum < SHIPPING_COSTS) {
       return true;
