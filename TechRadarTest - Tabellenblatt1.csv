@@ -1,0 +1,21 @@
+name,ring,quadrant,isNew,description
+JMS,Adopt,Communication,FALSE,async
+REST,Adopt,Communication,FALSE,sync
+GraphQL,Trial,Communication,FALSCH,Auch cool
+Kafka,Assess,Communication,FALSCH,Nettes Tool
+ECF,Hold,Communication,FALSCH,Woll ma nimma
+RMI,Hold,Communication,FALSCH,Raus damit
+Eclipse,Adopt,Tools and Infrastructure,FALSCH,Immer gut
+VS-Code,Trial,Tools and Infrastructure,FALSCH,Neu und geil
+Android Studio,Assess,Tools and Infrastructure,FALSCH,Brauch ma auch
+IntelliJ,Assess,Tools and Infrastructure,FALSCH,Kostet zuviel
+JDeveloper,Hold,Tools and Infrastructure,FALSCH,Mög ma net
+Java,Adopt,Languages and Frameworks,FALSCH,Immer gut
+TypeScript,Trial,Languages and Frameworks,FALSCH,Neu und geil
+Go,Assess,Languages and Frameworks,FALSCH,Experimentell
+C#,Hold,Languages and Frameworks,FALSCH,Na ja
+Oracle,Adopt,Datastores,FALSCH,Böse
+MsSql,Adopt,Datastores,FALSCH,Böser
+Reddis,Trial,Datastores,FALSCH,Ok
+Postgres,Assess,Datastores,FALSCH,Nettes Tool
+MySQL,Hold,Datastores,FALSCH,Na ja
